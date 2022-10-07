@@ -50,14 +50,16 @@
                              <a class="menu-expand" href="#"><i class="fa-solid fa-list"></i>Categories</a>
                              <nav class="category-menu">
                                 <ul>
-                                   <li><a href="course">Javascript</a></li>
-                                   <li><a href="course">Marketing</a></li>
-                                   <li><a href="course">Data Science</a></li>
-                                   <li><a href="course">Content Writing</a></li>
-                                   <li><a href="course">Freelancing</a></li>
-                                   <li><a href="course">Startup Growth</a></li>
-                                   <li><a href="course">UI/UX Design</a></li>
-                                   <li><a href="course">Web Development</a></li>
+                                 {% if course_category %}
+
+
+                                 {% for i in course_category %}
+                                 <li><a href="course">{{i.category_name}}</a></li>
+                                  
+                                 {% endfor %}
+
+                                 {% endif %}
+                                  
                                 </ul>
                              </nav>
                           </div>
@@ -79,9 +81,15 @@
                                       <li class="menu-item-has-children">
                                        <a href="#">Pages</a>
                                        <ul class="sub-menu">
+                                          {% if request.user.is_authenticated %}
+                                       
+   
+                                          <li><a href="{% url 'homepage:raisec' %}">Raisec</a></li>
+                                          {% else %}
                                           <li><a href="{% url 'accounts:signIn' %}">Sign In</a></li>
                                           <li><a href="{% url 'accounts:signUp' %}">Sign Up</a></li>
-                                          <li><a href="{% url 'homepage:raisec' %}">Raisec</a></li>
+                                          {% endif %}
+                                       
                                        </ul>
                                     </li>
                                  
