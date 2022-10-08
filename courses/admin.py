@@ -5,14 +5,14 @@ from django.contrib import admin
 from .models import (
     Course,
     CourseCategory,
-    CourseComments,
-    CourseRatings,
-    AdvertUserLinks
+  
+    AdvertUserLinks,CourseRattingAndComment
 )
 
 
 admin.site.register(Course)
-admin.site.register(CourseComments)
+
 admin.site.register(CourseCategory)
-admin.site.register(CourseRatings)
+
 admin.site.register(AdvertUserLinks)
+admin.site.register(CourseRattingAndComment)

@@ -1,8 +1,10 @@
 from email.policy import default
+from statistics import mode
 from django.db import models
 from accounts.models import UserTable
 import os
 import random
+from django.utils import timezone
 
 
 # Create your models here.
@@ -38,6 +40,7 @@ class Course(models.Model):
     course_description =  models.TextField()
     ratting_percentage = models.PositiveBigIntegerField(blank = True,null = True)
     is_published = models.BooleanField(default = True)
+    is_instructor = models.BooleanField(default = False)
 
 
     def __str__(self) -> str:
@@ -45,27 +48,26 @@ class Course(models.Model):
 
 
 
+class AutoDateTimeField(models.DateTimeField):
+    def pre_save(self, model_instance, add):
+        return timezone.now()
 
 
-class CourseRatings(models.Model):
-     user = models.ForeignKey(UserTable,on_delete = models.CASCADE , blank  = True , null = True)
-     course = models.ForeignKey(Course,on_delete = models.CASCADE)
-     rattings = models.PositiveBigIntegerField()
+
+class CourseRattingAndComment(models.Model):
+    user = models.ForeignKey(UserTable,on_delete = models.CASCADE , blank  = True , null = True)
+    course = models.ForeignKey(Course,on_delete = models.CASCADE)
+    ratings = models.PositiveBigIntegerField()
+    comment = models.CharField(max_length =  255)
+    created_at = models.DateField(default=timezone.now,editable = False)
+    updated_at = AutoDateTimeField(default=timezone.now,editable = False)
 
 
-     def __str__(self) -> str:
+    def __str__(self) -> str:
          return str(self.course)
 
 
 
-class CourseComments(models.Model):
-     user = models.ForeignKey(UserTable,on_delete = models.CASCADE , blank  = True , null = True)
-     course = models.ForeignKey(Course,on_delete = models.CASCADE)
-     comment = models.CharField(max_length =  255)
-
-
-     def __str__(self) -> str:
-         return str(self.course)
 
 
 
