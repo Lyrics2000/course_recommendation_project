@@ -24,25 +24,25 @@
                         <div class="course-author">
                            
                            <div class="course-rating">
-                              {% if u.ratting_percentage < 30 %}
+                              {% if u.ratting_percentage <= 30 %}
 
                               <div class="star-rating" role="img" aria-label="Rated 1.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">1.00</strong> out of 5</span></div>
                               (2.00)
                            </div>
       
-                           {% elif  u.ratting_percentage >  40 and  u.ratting_percentage < 70 %}
+                           {% elif  u.ratting_percentage >=  40 and  u.ratting_percentage <= 70 %}
       
                            <div class="star-rating" role="img" aria-label="Rated 3.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">3.00</strong> out of 5</span></div>
                            (3.00)
                         </div>
       
-                        {% elif  u.ratting_percentage >  71 and  u.ratting_percentage < 95 %}
+                        {% elif  u.ratting_percentage >=  71 and  u.ratting_percentage <= 95 %}
       
                         <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
                         (4.00)
                      </div>
       
-                     {% elif  u.ratting_percentage  == 95 %}
+                     {% elif  u.ratting_percentage  >= 96 %}
       
                      <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:{{u.ratting_percentage}}%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
                      (5.00)

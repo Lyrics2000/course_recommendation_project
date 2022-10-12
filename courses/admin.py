@@ -4,15 +4,19 @@ from django.contrib import admin
 
 from .models import (
     Course,
-    CourseCategory,
+    ClusterClasses,
   
-    AdvertUserLinks,CourseRattingAndComment
+    AdvertUserLinks,CourseRattingAndComment,
+    MinimumRequirement,
+    UserMinimumRequirement
 )
 
 
 admin.site.register(Course)
 
-admin.site.register(CourseCategory)
+admin.site.register(ClusterClasses)
 
 admin.site.register(AdvertUserLinks)
 admin.site.register(CourseRattingAndComment)
+admin.site.register(MinimumRequirement)
+admin.site.register(UserMinimumRequirement)

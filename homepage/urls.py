@@ -8,7 +8,8 @@ from .views import (
     courses,
     raisec,
     courseDetails,
-    recommendation
+    recommendation,
+    addGrade
 )
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path('courses/',courses,name='courses'),
     path('raisec/',raisec,name="raisec"),
     path('course/details/<int:id>/',courseDetails,name="courseDetails"),
-    path('recommendation/',recommendation,name="recommendation")
+    path('recommendation/',recommendation,name="recommendation"),
+    path('addGrade/',addGrade,name="addGrade")
  
 ]
