@@ -25,13 +25,17 @@
           <span class="sub-title">Sign Up</span>
   
         
-          <form action="mail.php" method="POST" class="contact-form ajax-contact">
+          <form action="{% url 'accounts:signUp' %}" method="POST" class="contact-form">
+            {% csrf_token %} 
              <div class="row">
-                <div class="form-group col-md-6"><input type="text" class="form-control style3" name="name" id="name" placeholder="username*"> <i class="fal fa-user"></i></div>
-                <div class="form-group col-md-6"><input type="password" class="form-control style3" name="email" id="email" placeholder="Password"> <i class="fal fa-lock"></i></div>
+                <div class="form-group col-md-6">{{form.firstName}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.lastName}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.phone}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.email}} <i class="fal fa-user"></i></div>
+                <div class="form-group col-md-6">{{form.password}}<i class="fal fa-lock"></i></div>
       
               
-                <div class="form-btn col-12 mt-10"><button class="as-btn">Sign Up<i class="fas fa-long-arrow-right ms-2"></i></button></div>
+                <div class="form-btn col-12 mt-10"><button type="submit" class="as-btn">Sign Up<i class="fas fa-long-arrow-right ms-2"></i></button></div>
              </div>
              <p class="form-messages mb-0 mt-3"></p>
           </form>

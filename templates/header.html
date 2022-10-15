@@ -78,22 +78,25 @@
                                          
                                       </li>
                                
+                                      {% if request.user.is_authenticated %}
+                                       
+                                      {% else %}
+
+
                                       <li class="menu-item-has-children">
+                                      
+   
                                        <a href="#">Pages</a>
                                        <ul class="sub-menu">
-                                          {% if request.user.is_authenticated %}
-                                       
-   
-                                          <li><a href="{% url 'homepage:raisec' %}">Raisec</a></li>
-
-                                          <li><a href="{% url 'homepage:recommendation' %}">Recommendations</a></li>
-                                          {% else %}
+                                        
                                           <li><a href="{% url 'accounts:signIn' %}">Sign In</a></li>
                                           <li><a href="{% url 'accounts:signUp' %}">Sign Up</a></li>
-                                          {% endif %}
+                                         
                                        
                                        </ul>
                                     </li>
+
+                                    {% endif %}
                                  
                                       <li><a href="contact.html">Contact</a></li>
                                    </ul>
