@@ -9,7 +9,8 @@ from .views import (
     raisec,
     courseDetails,
     recommendation,
-    addGrade
+    addGrade,
+    contactPage
 )
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     path('raisec/',raisec,name="raisec"),
     path('course/details/<int:id>/',courseDetails,name="courseDetails"),
     path('recommendation/',recommendation,name="recommendation"),
-    path('addGrade/',addGrade,name="addGrade")
+    path('addGrade/',addGrade,name="addGrade"),
+    path("contact/",contactPage,name="contact")
  
 ]

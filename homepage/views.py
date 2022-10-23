@@ -1,4 +1,6 @@
 from multiprocessing import context
+from types import NoneType
+from urllib import request
 from django.shortcuts import render,redirect
 import pandas as pd
 from scipy.sparse import csr_matrix
@@ -20,6 +22,11 @@ from sklearn.neighbors import NearestNeighbors
 from django.contrib.auth.decorators import login_required
 
 from raisec.models import RaisecGroup, RaisecQuestions
+from .models import (
+    ContactFromUser,
+    ContactInfor,
+    Subjects
+)
 
 
 
@@ -281,6 +288,53 @@ def addGrade(request):
 
       
     return render(request,'enterGrade.html',context)
+
+
+
+
+
+def contactPage(request):
+    info =  ContactInfor.objects.first()
+    subjects = Subjects.objects.all()
+
+    if request.method == "POST":
+        name =  request.POST.get("name")
+        email =  request.POST.get("email")
+        subject =  request.POST.get("subject")
+        number =  request.POST.get("number")
+        message =  request.POST.get("message")
+
+        sub = Subjects.objects.get(id = int(subject))
+      
+
+        bh =  ContactFromUser.objects.create(
+            name = name,
+            email =  email,
+            subject =  sub,
+            phone = number,
+            message = message
+
+
+        )
+
+        if bh is not None:
+            context = {
+                "message":"Saved successfully!",
+                "info":info,
+                "subjects":subjects
+            }
+            return render(request,'contact.html',context)
+
+
+
+
+
+    context = {
+         "message":"",
+        "info":info,
+        "subjects":subjects
+    }
+    return render(request,'contact.html',context)
 
 
 
